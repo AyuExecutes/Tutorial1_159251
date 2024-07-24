@@ -3,29 +3,39 @@ import java.util.ResourceBundle;
 
 public class Greeter {
 
-  private Locale locale;
-  private String name;
+    private Locale locale;
+    private String name;
 
-  public Greeter(String language, String country, String name) {
-    locale = new Locale(language, country);
-    this.name = name;
-  }
+    public Greeter(String language, String country, String name) {
 
-  public String sayHello() {
-    ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", locale);
-    return messages.getString("greeting") + ", " + "*" + name.toUpperCase() + "*";
-  }
+        locale = new Locale(language, country);
 
-  public static void main(String[] args) {
-
-    if (args.length != 3) {
-      System.out.println("Wrong number of arguments");
-      System.exit(1);
+        this.name = name;
     }
-    String language = args[0];
-    String country = args[1];
-    String name = args[2];
-    Greeter greeter = new Greeter(language, country, name);
-    System.out.println(greeter.sayHello());
-  }
+
+    public String sayHello() {
+
+        ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", locale);
+
+        return messages.getString("greeting") + ", " + "*" + name.toUpperCase() + "*";
+    }
+
+    public static void main(String[] args) {
+        
+        // check if the number of arguments is correct
+        if (args.length != 3) {
+
+            System.out.println("Wrong number of arguments");
+            System.exit(1);
+
+        }
+
+        String language = args[0];
+        String country = args[1];
+        String name = args[2];
+
+        Greeter greeter = new Greeter(language, country, name);
+
+        System.out.println(greeter.sayHello());
+    }
 }
